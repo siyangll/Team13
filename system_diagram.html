@@ -8,7 +8,7 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 20px;
             line-height: 1.6;
             background-color: #f4f4f4;
         }
@@ -23,13 +23,16 @@
             font-size: 2.5em;
         }
         .content {
-            width: 100%; /* 占满整个页面宽度 */
-            padding: 20px;
+            max-width: 900px;
+            margin: 20px auto;
             background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .content h2 {
             color: #4CAF50; /* Green title color */
-            margin-top: 20px;
+            margin-bottom: 15px;
         }
         .content ul {
             margin: 10px 0 20px 20px;
@@ -43,6 +46,9 @@
             margin: 20px auto;
             width: 90%;
             max-width: 800px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .footer {
             background: linear-gradient(135deg, #4CAF50, #007ACC);
@@ -71,15 +77,15 @@
     </div>
 
     <div class="content">
-        <img src="MVP-1.png" alt="System Diagram">
-
         <h2>Signal Acquisition Unit</h2>
         <ul>
             <li><strong>Water Intake Monitoring Module (FSR406):</strong> Utilizes the FSR406 pressure sensor to collect real-time changes in water pressure inside the cup, enabling the calculation of water intake.</li>
             <li><strong>Water Quality Testing Module (SEN0244):</strong> Uses the SEN0244 module to measure water conductivity, providing an evaluation of water quality.</li>
             <li><strong>Pulse Signal Acquisition Module (MAX30102):</strong> Employs the MAX30102 sensor to acquire photoplethysmographic (PPG) signals, enabling heart rate detection.</li>
         </ul>
+    </div>
 
+    <div class="content">
         <h2>Local Monitoring Unit</h2>
         <ul>
             <li><strong>ATmega328PB Module:</strong>
@@ -96,7 +102,9 @@
                 </ul>
             </li>
         </ul>
+    </div>
 
+    <div class="content">
         <h2>Remote Monitoring Unit</h2>
         <ul>
             <li><strong>Cloud Platform:</strong>
@@ -106,7 +114,9 @@
                 </ul>
             </li>
         </ul>
+    </div>
 
+    <div class="content">
         <h2>Data Flow</h2>
         <ul>
             <li>The Signal Acquisition Unit collects raw data.</li>
