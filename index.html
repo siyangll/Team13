@@ -31,19 +31,21 @@
         .content div:last-child {
             margin-left: 20px;
         }
+        /* 控制 Product Review 的图片大小 */
         .product-review {
-        width: 300px; 
-        height: 450px;
-        border: 2px solid #ddd;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        object-fit: cover;
+            width: 300px;
+            height: 450px;
+            border: 2px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            object-fit: cover;
         }
+        /* 控制 System Diagram 的图片大小 */
         .system-diagram {
-        width: 400px;
-        height: 300px;
-        border: 2px solid #ddd;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        object-fit: cover;
+            width: 400px;
+            height: 300px;
+            border: 2px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            object-fit: cover;
         }
         .description {
             flex: 1;
@@ -59,7 +61,7 @@
             text-align: center;
             margin: 30px auto;
         }
-        .video video {
+        .video iframe {
             width: 640px;
             height: 360px;
             border: 2px solid red;
@@ -76,7 +78,7 @@
     <div class="content">
         <div>
             <h2>Product Review</h2>
-            <img src="MVP-2.jpg" alt="Product Review">
+            <img src="MVP-2.jpg" alt="Product Review" class="product-review">
         </div>
         <div class="description">
             <p>
@@ -93,13 +95,13 @@
         </div>
         <div>
             <h2>System Diagram</h2>
-            <img src="MVP-1.png" alt="System Diagram">
+            <img src="MVP-1.png" alt="System Diagram" class="system-diagram">
         </div>
     </div>
 
     <div class="video">
         <h2>Demonstration Video</h2>
-        <iframe src="https://drive.google.com/file/d/1RIaxqERkZDv74oxNMJxZppP88zxOR55Z/preview" width="640" height="360" allow="autoplay"></iframe>
+        <iframe src="https://drive.google.com/file/d/1RIaxqERkZDv74oxNMJxZppP88zxOR55Z/preview" allow="autoplay"></iframe>
     </div>
 </body>
 </html>
