@@ -7,18 +7,25 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
             padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
         }
         img {
+            display: block;
+            margin: 0 auto 20px;
             width: 80%;
             max-width: 800px;
             border: 2px solid #ddd;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         a {
-            display: inline-block;
+            display: block;
             margin-top: 20px;
+            text-align: center;
             color: #007ACC;
             font-size: 1.2em;
             text-decoration: none;
@@ -26,11 +33,77 @@
         a:hover {
             text-decoration: underline;
         }
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .content h2 {
+            color: #333;
+            margin-top: 20px;
+            font-size: 1.5em;
+        }
+        .content p {
+            margin: 10px 0;
+        }
+        .content ul {
+            margin: 10px 0 20px 20px;
+            padding-left: 20px;
+        }
+        .content ul li {
+            margin: 5px 0;
+        }
     </style>
 </head>
 <body>
     <h1>System Diagram</h1>
     <img src="MVP-1.png" alt="System Diagram">
+
+    <div class="content">
+        <h2>This diagram illustrates the three main modules of our designed Smart Water Cup System:</h2>
+
+        <h3>1. Signal Acquisition Unit</h3>
+        <ul>
+            <li><strong>Water Intake Monitoring Module (FSR406):</strong> Utilizes the FSR406 pressure sensor to collect real-time changes in water pressure inside the cup, enabling the calculation of water intake.</li>
+            <li><strong>Water Quality Testing Module (SEN0244):</strong> Uses the SEN0244 module to measure water conductivity, providing an evaluation of water quality.</li>
+            <li><strong>Pulse Signal Acquisition Module (MAX30102):</strong> Employs the MAX30102 sensor to acquire photoplethysmographic (PPG) signals, enabling heart rate detection.</li>
+        </ul>
+
+        <h3>2. Local Monitoring Unit</h3>
+        <ul>
+            <li><strong>ATmega328PB Module:</strong>
+                <ul>
+                    <li>Processes data related to water intake, water quality, and heart rate.</li>
+                    <li>Implements calculations for water consumption, water quality comparison, and heart rate analysis.</li>
+                </ul>
+            </li>
+            <li><strong>Auxiliary Modules:</strong>
+                <ul>
+                    <li><strong>LCD Module:</strong> Displays water intake, water quality results, and heart rate.</li>
+                    <li><strong>Buzzer:</strong> Issues alerts when water intake is insufficient or water quality is abnormal.</li>
+                    <li><strong>ESP32 Module:</strong> Transmits data to the cloud via Wi-Fi.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>3. Remote Monitoring Unit</h3>
+        <ul>
+            <li><strong>Cloud Platform:</strong>
+                <ul>
+                    <li><strong>Data Storage:</strong> Stores user data for later analysis.</li>
+                    <li><strong>Data Monitoring:</strong> Enables real-time data monitoring through the Bylnk cloud platform.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>Data Flow</h3>
+        <ul>
+            <li>The Signal Acquisition Unit collects raw data.</li>
+            <li>The Local Monitoring Unit processes the data, providing real-time display and alerts.</li>
+            <li>Data is transmitted via the ESP32 to the Remote Monitoring Unit for storage and analysis.</li>
+        </ul>
+    </div>
+
     <a href="index.html">Back to Main Page</a>
 </body>
 </html>
