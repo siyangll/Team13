@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Diagram</title>
+    <title>Hardware Requirements Specification</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -21,11 +21,6 @@
         .header h1 {
             margin: 0;
             font-size: 2.5em;
-        }
-        .header p {
-            margin: 5px 0 0;
-            font-size: 1em;
-            color: white;
         }
         .content {
             background: white;
@@ -114,8 +109,49 @@ LCD_drawString(100, 60, tdsBuffer, CYAN, BLACK);
         <p><strong>Supporting Evidence:</strong> Real-time LCD screenshots showing accurate updates of hydration and heart rate.</p>
     </div>
 
-    <!-- Add other HRS items here following the same structure -->
-    
+    <div class="content">
+        <h2>HRS 04 - The system shall use the ESP32 module</h2>
+        <p><strong>Status:</strong> Achieved</p>
+        <p>The ESP32 module is integrated for wireless communication and uploads data to the Blynk platform via Wi-Fi.</p>
+    </div>
+
+    <div class="content">
+        <h2>HRS 05 - MAX30102 heart rate sensor shall be integrated with an accuracy of ±3 BPM</h2>
+        <p><strong>Status:</strong> Achieved</p>
+        <p>The MAX30102 sensor measures heart rate with an accuracy of ±3 BPM, confirmed through repeated tests against a standard pulse oximeter.</p>
+    </div>
+
+    <div class="content">
+        <h2>HRS 06 - TDS sensor shall measure water quality in a range of 0-1000ppm with ±2% accuracy</h2>
+        <p><strong>Status:</strong> Achieved</p>
+        <p>SEN0244 TDS sensor is calibrated and provides measurements within a 0-1000 ppm range with ±2% accuracy after temperature compensation.</p>
+    </div>
+
+    <div class="content">
+        <h2>HRS 07 - System shall be powered by 4x AA NiMH batteries (2000mAh each)</h2>
+        <p><strong>Status:</strong> Achieved</p>
+    </div>
+
+    <div class="content">
+        <h2>HRS 08 - TDS PCB</h2>
+        <p>Due to time limitations, we used a TDS breakout board instead and got the readings using bare-metal C code.</p>
+    </div>
+
+    <div class="content">
+        <h2>HRS 09 - Capacitive sensing PCB</h2>
+        <p>Since the capacitive sensing module was not sold on any of the approved vendors and could not be shipped in time, we decided to use a pressure sensor for water level detection.</p>
+    </div>
+
+    <div class="content">
+        <h2>HRS 10 - System enclosure</h2>
+        <p><strong>Status:</strong> To be completed with mechanical framework.</p>
+    </div>
+
+    <div class="content">
+        <h2>HRS 11 - Power Management</h2>
+        <p>We successfully used batteries to power the entire system. For recharging, we couldn't find suitable modules for non Li-Po batteries, so we settled for AA Alkaline batteries, which are easily accessible and convenient to replace.</p>
+    </div>
+
     <a href="index.html">Back to Main Page</a>
 
     <div class="footer">
