@@ -8,8 +8,9 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 20px;
             line-height: 1.6;
+            background-color: #f4f4f4;
         }
         .header {
             background: linear-gradient(135deg, #007ACC, #4CAF50);
@@ -25,6 +26,13 @@
             margin: 5px 0 0;
             font-size: 1em;
             color: white;
+        }
+        .content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
         .footer {
             background: linear-gradient(135deg, #4CAF50, #007ACC);
@@ -45,12 +53,68 @@
         a:hover {
             text-decoration: underline;
         }
+        h2 {
+            color: #4CAF50;
+        }
+        pre {
+            background: #f8f8f8;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>Hardware Requirements Specification</h1>
     </div>
+    
+    <div class="content">
+        <h2>HRS 01 - The project shall be based on an ATmega328PB microcontroller operating at 16 MHz</h2>
+        <p><strong>Status:</strong> Achieved</p>
+        <p>The ATmega328PB microcontroller is configured to operate at a clock frequency of 16 MHz. All sensor integrations and peripheral devices are functioning within this setup.</p>
+        <p><strong>Supporting Evidence:</strong></p>
+        <ul>
+            <li>Verified through firmware and hardware configuration, including successful SPI and UART communications.</li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h2>HRS 02 - FDC1004 capacitive sensing system shall be implemented with:</h2>
+        <p><strong>Status:</strong> Partially Achieved</p>
+        <p><strong>Implemented:</strong></p>
+        <ul>
+            <li>Basic capacitive sensing system using pressure sensor (FSR406) instead of FDC1004.</li>
+            <li>Achieved ±5ml resolution for water level detection.</li>
+        </ul>
+        <p><strong>Pending:</strong></p>
+        <ul>
+            <li>4 vertical sensing electrodes, ground shield, and waterproof conformal coating have not been implemented due to material constraints.</li>
+        </ul>
+        <p><strong>Supporting Evidence:</strong> Pressure sensor measurements were tested and validated for a detection range of 0-473ml.</p>
+    </div>
+
+    <div class="content">
+        <h2>HRS 03 - LCD shall output heart rate and water consumption when prompted</h2>
+        <p><strong>Status:</strong> Achieved</p>
+        <p>LCD successfully displays heart rate, water consumption, and water quality in real-time.</p>
+        <p><strong>Code Snippet:</strong></p>
+        <pre>
+if (bpm > 0) {
+    snprintf(bpmDisplayBuffer, sizeof(bpmDisplayBuffer), "%d BPM", bpm);
+    LCD_drawString(100, 20, bpmDisplayBuffer, CYAN, BLACK);
+} else {
+    strcpy(bpmDisplayBuffer, "No Signal");
+    LCD_drawString(100, 20, bpmDisplayBuffer, RED, BLACK);
+}
+
+snprintf(tdsBuffer, sizeof(tdsBuffer), "%.2f ppm", tdsValue);
+LCD_drawString(100, 60, tdsBuffer, CYAN, BLACK);
+        </pre>
+        <p><strong>Supporting Evidence:</strong> Real-time LCD screenshots showing accurate updates of hydration and heart rate.</p>
+    </div>
+
+    <!-- Add other HRS items here following the same structure -->
     
     <a href="index.html">Back to Main Page</a>
 
