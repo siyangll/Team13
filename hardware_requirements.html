@@ -89,19 +89,6 @@
         <h2>HRS 03 - LCD shall output heart rate and water consumption when prompted</h2>
         <p><strong>Status:</strong> Achieved</p>
         <p>LCD successfully displays heart rate, water consumption, and water quality in real-time.</p>
-        <p><strong>Code Snippet:</strong></p>
-        <pre>
-if (bpm > 0) {
-    snprintf(bpmDisplayBuffer, sizeof(bpmDisplayBuffer), "%d BPM", bpm);
-    LCD_drawString(100, 20, bpmDisplayBuffer, CYAN, BLACK);
-} else {
-    strcpy(bpmDisplayBuffer, "No Signal");
-    LCD_drawString(100, 20, bpmDisplayBuffer, RED, BLACK);
-}
-
-snprintf(tdsBuffer, sizeof(tdsBuffer), "%.2f ppm", tdsValue);
-LCD_drawString(100, 60, tdsBuffer, CYAN, BLACK);
-        </pre>
         <p><strong>Supporting Evidence:</strong> Real-time LCD screenshots showing accurate updates of hydration and heart rate.</p>
     </div>
 
