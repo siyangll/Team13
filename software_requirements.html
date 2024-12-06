@@ -78,11 +78,11 @@
     </div>
 
     <div class="content">
-        <h2>SRS 01 - Water level shall be measured using capacitive sensing (FDC1004) every 5 seconds with ±5ml accuracy</h2>
+        <h2>SRS 01 - Water level shall be measured using a flex pressure sensor every second.</h2>
         <p><strong>Status:</strong> Achieved</p>
         <ul>
-            <li>The water level is monitored every 5 seconds using a pressure sensor (FSR406) as an alternative to capacitive sensing.</li>
-            <li>ADC readings are used to calculate the water level with a ±5ml accuracy through linear interpolation.</li>
+            <li>The water level is monitored every using a flex pressure sensor (FSR406).</li>
+            <li>ADC readings are used to calculate the water through linear interpolation.</li>
         </ul>
         <p><strong>Code snippet:</strong></p>
         <pre>
@@ -100,7 +100,7 @@ waterIntakeTotal += lastVolume - currentVolume;
         </ul>
         <p><strong>Result analysis:</strong></p>
         <ul>
-            <li>Measurements consistently stayed within ±5ml deviation, meeting accuracy requirements.</li>
+            <li>Measurement reading is consistently performed and displayed and is in accord with water level changes.</li>
         </ul>
     </div>
 
@@ -123,10 +123,10 @@ lcd_display("TDS Value", tdsValue);
     </div>
 
     <div class="content">
-        <h2>SRS 03 - Heart rate shall be measured on-demand when the bottle is held, with readings completed within 15 seconds</h2>
+        <h2>SRS 03 - Heart rate shall be measured on-demand when the bottle is held, with readings completed within 10 seconds</h2>
         <p><strong>Status:</strong> Achieved</p>
         <ul>
-            <li>MAX30102 sensor measures heart rate when the bottle is held. Data is processed and displayed within 12 seconds.</li>
+            <li>Pulse sensor measures heart rate when finger is detected by the pulse sensor. Data is processed and displayed within 5 seconds.</li>
         </ul>
         <p><strong>Code snippet:</strong></p>
         <pre>
@@ -155,21 +155,9 @@ Blynk.virtualWrite(V3_TDS, tdsValue);
         <img src="MVP_Bylnk.png" alt="Blynk Screenshot">
     </div>
 
-    <div class="content">
-        <h2>SRS 05 - The system shall maintain daily water intake records and sync with the mobile app every 15 minutes when connected</h2>
-        <p><strong>Status:</strong> Partially achieved</p>
-        <ul>
-            <li>Daily water intake records are logged and updated locally.</li>
-            <li>Data synchronization with the cloud is implemented, but storing time-series data on the cloud is still under optimization.</li>
-        </ul>
-        <p><strong>Reason for delay:</strong></p>
-        <ul>
-            <li>Optimization of cloud storage for historical data is pending.</li>
-        </ul>
-    </div>
 
     <div class="content">
-        <h2>SRS 06 - Hydration reminders shall be triggered on the buzzer, displayed on the LCD, and sent through the UI if no water consumption is detected for 2 hours during active hours</h2>
+        <h2>SRS 05 - Hydration reminders shall be triggered on the buzzer, displayed on the LCD, and sent through the UI if no water consumption is detected for 2 hours during active hours</h2>
         <p><strong>Status:</strong> Partially achieved</p>
         <p><strong>Current implementation:</strong></p>
         <ul>
@@ -197,7 +185,7 @@ Blynk.virtualWrite(V2_DRINK, "Reminder: Drink Water");
     </div>
 
     <div class="content">
-        <h2>SRS 07 - Display shall update every 2 seconds with the current hydration level, water quality, and heart rate measurement when prompted</h2>
+        <h2>SRS 06 - Display shall update every 2 seconds with the current water level, water quality, and heart rate measurement when prompted</h2>
         <p><strong>Status:</strong> Achieved</p>
         <ul>
             <li>The LCD updates every 2 seconds with the current hydration level, TDS, and heart rate when prompted.</li>
@@ -215,31 +203,7 @@ LCD_drawString(5, 60, buffer, WHITE, BLACK);
         </pre>
     </div>
 
-    <div class="content">
-        <h2>SRS 08 - Buzzer shall sound for five seconds to alert the user if the user stops drinking water for 2 hours</h2>
-        <p><strong>Status:</strong> Partially achieved</p>
-        <ul>
-            <li>If no water consumption is detected for 2 hours, the buzzer sounds for 5 seconds to alert the user.</li>
-        </ul>
-        <p><strong>Code snippet:</strong></p>
-        <pre>
-// Trigger drinking reminder if water level doesn't change for a long time
-if (current_time - last_change_time >= 3000) {
-    progmem_to_ram(buffer, str_drink);
-    LCD_drawString(5, 100, buffer, RED, BLACK);
-    snprintf(reminder, sizeof(reminder), "%s", buffer);
-}
-        </pre>
-        <p><strong>Pending work:</strong></p>
-        <ul>
-            <li>The buzzer is not yet configured to sound for the reminder.</li>
-        </ul>
-        <p><strong>Next Steps:</strong></p>
-        <ul>
-            <li>Implement the <code>trigger_buzzer()</code> function to activate the buzzer when the hydration reminder is triggered.</li>
-        </ul>
-    </div>
-
+   
     <a href="index.html">Back to Main Page</a>
 
     <div class="footer">
