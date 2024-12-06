@@ -90,9 +90,6 @@ uint16_t pressureReading = ADC_Read(Pressure_PIN);
 float currentVolume = getVolumeFromAdc(pressureReading);
 waterIntakeTotal += lastVolume - currentVolume;
         </pre>
-        <p><strong>Screenshot:</strong></p>
-        <img src="mvp-waterintake.png" alt="Water Intake Screenshot">
-        <p>The screenshot shows the ADC value of the measurement, the real-time update of the water volume, and the total amount of water intake.</p>
         <p><strong>Data collection process:</strong></p>
         <ul>
             <li>FSR406 sensor outputs analog signals, converted to digital using ADC.</li>
