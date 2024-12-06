@@ -160,12 +160,9 @@ Blynk.virtualWrite(V3_TDS, tdsValue);
         <ul>
             <li>Hydration reminders are successfully displayed on the LCD and sent to the Blynk app when no water consumption is detected for 2 hours.</li>
             <li>The buzzer is not yet configured to sound for the reminder.</li>
+
         </ul>
-        <p><strong>Pending work:</strong></p>
-        <ul>
-            <li>Integrate the buzzer to sound a short alert along with the LCD and app reminders.</li>
-        </ul>
-        <p><strong>Updated Code Snippet:</strong></p>
+        <p><strong>Code Snippet:</strong></p>
         <pre>
 if (current_time - last_change_time >= 7200000) {
     progmem_to_ram(buffer, str_drink);
@@ -182,10 +179,10 @@ Blynk.virtualWrite(V2_DRINK, "Reminder: Drink Water");
     </div>
 
     <div class="content">
-        <h2>SRS 06 - Display shall update every 2 seconds with the current water level, water quality, and heart rate measurement when prompted</h2>
+        <h2>SRS 06 - Display shall update every second with the current water level, water quality, and heart rate measurement when prompted</h2>
         <p><strong>Status:</strong> Achieved</p>
         <ul>
-            <li>The LCD updates every 2 seconds with the current hydration level, TDS, and heart rate when prompted.</li>
+            <li>The LCD updates every second with the current hydration level, TDS, and heart rate when prompted.</li>
         </ul>
         <p><strong>Code snippet:</strong></p>
         <pre>
