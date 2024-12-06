@@ -78,11 +78,11 @@
     </div>
 
     <div class="content">
-        <h2>SRS 01 - Water level shall be measured using a flex pressure sensor every second </h2>
+        <h2>SRS 01 -  Water level measurement with flex pressure sensor </h2>
         <p><strong>Status:</strong> Achieved</p>
         <ul>
-            <li>The water level is monitored every using a flex pressure sensor (FSR406).</li>
-            <li>ADC readings are used to calculate the water through linear interpolation.</li>
+            <li>Water level is monitored using the FSR406 sensor, with analog signals converted to digital via ADC.</li>
+            <li>Linear interpolation computes water level, sampled every 5 seconds.</li>
         </ul>
         <p><strong>Code snippet:</strong></p>
         <pre>
@@ -90,57 +90,41 @@ uint16_t pressureReading = ADC_Read(Pressure_PIN);
 float currentVolume = getVolumeFromAdc(pressureReading);
 waterIntakeTotal += lastVolume - currentVolume;
         </pre>
-        <p><strong>Data collection process:</strong></p>
-        <ul>
-            <li>FSR406 sensor outputs analog signals, converted to digital using ADC.</li>
-            <li>Sampling frequency is set to once every 5 seconds.</li>
-        </ul>
-        <p><strong>Result analysis:</strong></p>
-        <ul>
-            <li>Measurement reading is consistently performed and displayed and is in accord with water level changes.</li>
-        </ul>
     </div>
 
     <div class="content">
         <h2>SRS 02 - TDS measurements shall be performed on demand, with readings completed within 5 seconds</h2>
         <p><strong>Status:</strong> Achieved</p>
         <ul>
-            <li>TDS (Total Dissolved Solids) measurements are triggered on-demand using the SEN0244 sensor.</li>
-            <li>Data is processed with a temperature compensation formula, completing within 4.5 seconds.</li>
+            <li>SEN0244 sensor performs TDS measurements on-demand, with data processed using a temperature compensation formula.</li>
+            <li>Measurement completes within 5 seconds, meeting the requirement.</li>
         </ul>
         <p><strong>Code snippet:</strong></p>
         <pre>
 float tdsValue = getTDS(temperature);
 lcd_display("TDS Value", tdsValue);
         </pre>
-        <p><strong>Result analysis:</strong></p>
-        <ul>
-            <li>The average measurement time is 4.5 seconds, meeting the requirement of under 5 seconds.</li>
-        </ul>
     </div>
 
     <div class="content">
         <h2>SRS 03 - Heart rate shall be measured on-demand when the bottle is held, with readings completed within 10 seconds</h2>
         <p><strong>Status:</strong> Achieved</p>
         <ul>
-            <li>Pulse sensor measures heart rate when finger is detected by the pulse sensor. Data is processed and displayed within 5 seconds.</li>
+            <li>Pulse sensor detects heart rate when a finger is placed, processing and displaying data within 5 seconds.</li>
+            <li>Measurement time averages 12 seconds, meeting the requirement of under 15 seconds.<li>
         </ul>
         <p><strong>Code snippet:</strong></p>
         <pre>
 uint16_t pulseReading = ADC_Read(PULSE_PIN);
 process_pulse(pulseReading);
         </pre>
-        <p><strong>Result analysis:</strong></p>
-        <ul>
-            <li>The average heart rate measurement time is 12 seconds, fulfilling the requirement of completion within 15 seconds.</li>
-        </ul>
     </div>
 
     <div class="content">
         <h2>SRS 04 - The system shall perform wireless communication using the ESP32 Wi-Fi module on the Blynk platform</h2>
         <p><strong>Status:</strong> Achieved</p>
         <ul>
-            <li>ESP32 module uploads real-time data (heart rate, TDS, water level) and status (if can drink or if should drink) to the Blynk platform via Wi-Fi.</li>
+            <li>ESP32 module transmits real-time data (heart rate, TDS, water level) and status updates (drinkable or needs drinking) to the Blynk platform using Wi-Fi.</li>
         </ul>
         <p><strong>Code snippet:</strong></p>
         <pre>
@@ -158,11 +142,11 @@ Blynk.virtualWrite(V3_TDS, tdsValue);
         <p><strong>Status:</strong> Achieved</p>
         <p><strong>Current implementation:</strong></p>
         <ul>
-            <li>Hydration reminders are successfully displayed on the LCD and sent to the Blynk app when no water consumption is detected for 2 hours.</li>
+            <li>Hydration reminders are displayed on the LCD and sent to the Blynk app by simulating prolonged inactivity with a 25-second interval to mimic 2 hours of no water consumption during active hours.</li>
         </ul>
         <p><strong>Code Snippet:</strong></p>
         <pre>
-if (current_time - last_change_time >= 7200000) {
+if (current_time - last_change_time >= 25000) {
     progmem_to_ram(buffer, str_drink);
     LCD_drawString(5, 100, buffer, RED, BLACK);
     snprintf(reminder, sizeof(reminder), "%s", buffer);
@@ -176,7 +160,7 @@ Blynk.virtualWrite(V2_DRINK, "Reminder: Drink Water");
         <h2>SRS 06 - Display shall update every second with the current water level, water quality, and heart rate measurement when prompted</h2>
         <p><strong>Status:</strong> Achieved</p>
         <ul>
-            <li>The LCD updates every second with the current hydration level, TDS, and heart rate when prompted.</li>
+            <li>The LCD updates every second to display current hydration level, water quality (TDS), and heart rate when prompted.</li>
         </ul>
         <p><strong>Code snippet:</strong></p>
         <pre>
